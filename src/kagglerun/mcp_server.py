@@ -33,6 +33,8 @@ try:
         Tool,
         TextContent,
         CallToolResult,
+        ServerCapabilities,
+        ToolsCapability,
     )
     from mcp.server.models import InitializationOptions
     MCP_AVAILABLE = True
@@ -269,10 +271,9 @@ def run_server():
         async with stdio_server() as (read_stream, write_stream):
             init_options = InitializationOptions(
                 server_name="kagglerun",
-                server_version="0.3.1",
-                capabilities=server.get_capabilities(
-                    notification_options=None,
-                    experimental_capabilities={},
+                server_version="0.3.2",
+                capabilities=ServerCapabilities(
+                    tools=ToolsCapability(listChanged=False),
                 ),
             )
             await server.run(read_stream, write_stream, init_options)
