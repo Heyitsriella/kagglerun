@@ -4,15 +4,16 @@ KaggleRun MCP Server - Model Context Protocol server for AI agents.
 This allows AI assistants like Claude Code to execute Python on Kaggle GPUs
 as a native tool, without writing Python scripts.
 
-Usage:
-    # In Claude Code MCP settings, add:
+Get URL: Kaggle notebook -> Run menu -> Kaggle Jupyter Server -> Copy VSCode Compatible URL
+
+Usage in Claude Code MCP settings:
     {
         "mcpServers": {
             "kagglerun": {
                 "command": "python",
                 "args": ["-m", "kagglerun.mcp_server"],
                 "env": {
-                    "KAGGLE_JUPYTER_URL": "your-kaggle-url (format auto-detected)"
+                    "KAGGLE_JUPYTER_URL": "https://...?token=..."
                 }
             }
         }

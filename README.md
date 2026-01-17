@@ -36,14 +36,13 @@ kagglerun --url <your-kaggle-url> "import torch; print(torch.cuda.get_device_nam
 
 ### 1. Get Your Kaggle Jupyter URL
 
-1. Go to [kaggle.com/code](https://www.kaggle.com/code) and create a new notebook
+1. Go to [kaggle.com/code](https://www.kaggle.com/code) and create/open a notebook
 2. Enable GPU: **Settings** → **Accelerator** → **GPU T4 x2** or **GPU P100**
-3. Click the **"..."** menu → **"Copy VS Code Server URL"**
+3. Click **Run** menu (top left) → **Kaggle Jupyter Server**
+4. Copy the **VSCode Compatible URL** from the right panel
 
-Your URL looks like one of these formats (both work automatically):
 ```
 https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ...
-https://kkb-production.jupyter-proxy.kaggle.net/k/123456/eyJ.../proxy
 ```
 
 ### 2. Install & Run

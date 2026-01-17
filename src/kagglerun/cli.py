@@ -40,9 +40,9 @@ Environment:
   KAGGLE_JUPYTER_URL    Default Jupyter URL (so you don't need --url)
 
 Get your URL:
-  1. Open Kaggle notebook with GPU
-  2. Click "..." menu -> "Copy VS Code Server URL"
-  3. Use the URL directly (format auto-detected)
+  1. Open Kaggle notebook with GPU enabled
+  2. Run menu -> Kaggle Jupyter Server
+  3. Copy VSCode Compatible URL from right panel
 '''
     )
 
@@ -74,8 +74,8 @@ Get your URL:
         print("Use --url or set KAGGLE_JUPYTER_URL environment variable.", file=sys.stderr)
         print("\nTo get your URL:", file=sys.stderr)
         print("  1. Open Kaggle notebook with GPU enabled", file=sys.stderr)
-        print("  2. Click '...' menu -> 'Copy VS Code Server URL'", file=sys.stderr)
-        print("  3. Use the URL directly (format auto-detected)", file=sys.stderr)
+        print("  2. Run menu -> Kaggle Jupyter Server", file=sys.stderr)
+        print("  3. Copy VSCode Compatible URL from right panel", file=sys.stderr)
         return 1
 
     # Only add /proxy for path-based URLs (not query parameter format)
