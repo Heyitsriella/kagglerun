@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kagglerun"
-version = "0.2.4"
+version = "0.3.0"
 description = "Execute Python on Kaggle's FREE GPUs (T4/P100/H100) from your terminal. Perfect for AI agents."
 readme = "README.md"
 license = {text = "MIT"}
@@ -66,16 +66,17 @@ all = [
 kagglerun = "kagglerun.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/kagglerun/kagglerun"
-Documentation = "https://github.com/kagglerun/kagglerun#readme"
-Repository = "https://github.com/kagglerun/kagglerun"
-Issues = "https://github.com/kagglerun/kagglerun/issues"
-Changelog = "https://github.com/kagglerun/kagglerun/releases"
+Homepage = "https://github.com/Letemoin/kagglerun"
+Documentation = "https://github.com/Letemoin/kagglerun#readme"
+Repository = "https://github.com/Letemoin/kagglerun"
+Issues = "https://github.com/Letemoin/kagglerun/issues"
+Changelog = "https://github.com/Letemoin/kagglerun/releases"
 
 [tool.hatch.build.targets.sdist]
 include = [
     "/src",
     "/tests",
+    "/assets",
     "/README.md",
     "/LICENSE",
 ]

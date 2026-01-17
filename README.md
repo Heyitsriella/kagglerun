@@ -1,67 +1,147 @@
-# KaggleRun
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Letemoin/kagglerun/main/assets/logo.svg" alt="KaggleRun Logo" width="400">
+</p>
 
-[![PyPI version](https://badge.fury.io/py/kagglerun.svg)](https://pypi.org/project/kagglerun/)
-[![Downloads](https://static.pepy.tech/badge/kagglerun/month)](https://pepy.tech/project/kagglerun)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+<h1 align="center">KaggleRun</h1>
 
-**Execute Python on Kaggle's FREE GPUs from your terminal. No browser needed.**
+<p align="center">
+  <strong>Execute Python on Kaggle's FREE GPUs from your terminal. No browser needed.</strong>
+</p>
 
-Perfect for AI coding agents like Claude Code, Cursor, and Cline.
+<p align="center">
+  <a href="https://pypi.org/project/kagglerun/"><img src="https://img.shields.io/pypi/v/kagglerun?color=blue&label=PyPI&logo=pypi&logoColor=white" alt="PyPI"></a>
+  <a href="https://pypi.org/project/kagglerun/"><img src="https://img.shields.io/pypi/dm/kagglerun?color=green&label=Downloads&logo=python&logoColor=white" alt="Downloads"></a>
+  <a href="https://github.com/Letemoin/kagglerun/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg?logo=opensourceinitiative&logoColor=white" alt="License"></a>
+  <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.8+-blue.svg?logo=python&logoColor=white" alt="Python"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Letemoin/kagglerun/stargazers"><img src="https://img.shields.io/github/stars/Letemoin/kagglerun?style=social" alt="Stars"></a>
+  <a href="https://github.com/Letemoin/kagglerun/network/members"><img src="https://img.shields.io/github/forks/Letemoin/kagglerun?style=social" alt="Forks"></a>
+</p>
+
+<p align="center">
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-mcp-server">MCP Server</a> •
+  <a href="#-api-reference">API</a> •
+  <a href="#-contributing">Contributing</a>
+</p>
+
+---
+
+## What is KaggleRun?
+
+**KaggleRun** bridges your local terminal to Kaggle's free GPU infrastructure. Perfect for:
+
+- **AI Coding Agents** - Claude Code, Cursor, Cline can execute GPU code natively
+- **ML Engineers** - Train models without leaving your terminal
+- **Data Scientists** - Run experiments on free T4/P100/H100 GPUs
 
 ```bash
 pip install kagglerun
-kagglerun --url <your-kaggle-url> "import torch; print(torch.cuda.get_device_name(0))"
-# Output: NVIDIA Tesla T4 (or P100, H100 depending on availability)
+kagglerun --url "$KAGGLE_URL" "import torch; print(torch.cuda.get_device_name(0))"
+# Output: Tesla T4
 ```
 
 ---
 
 ## Why KaggleRun?
 
-| Feature | KaggleRun | Kaggle Web | Colab | RunPod |
-|---------|-----------|------------|-------|--------|
+| Feature | KaggleRun | Kaggle Web | Colab | Cloud GPU |
+|:--------|:---------:|:----------:|:-----:|:---------:|
 | No browser needed | **Yes** | No | No | No |
 | CLI-native | **Yes** | No | No | Partial |
 | AI agent ready (MCP) | **Yes** | No | No | No |
-| Free GPU (T4/P100/H100) | **Yes** | Yes | No | No |
+| Free GPU access | **Yes** | Yes | Limited | No |
 | Real-time output | **Yes** | Yes | Yes | Yes |
-| Cost | **$0** | $0 | $0-10/mo | $0.50+/hr |
-
-**KaggleRun bridges your local terminal to Kaggle's free GPU infrastructure.**
+| Cost | **$0** | $0 | $0-10/mo | $$$$ |
 
 ---
 
 ## Quick Start
 
-### 1. Get Your Kaggle Jupyter URL
+### Step 1: Get Your Kaggle URL
 
-1. Go to [kaggle.com/code](https://www.kaggle.com/code) and create/open a notebook
-2. Enable GPU: **Settings** → **Accelerator** → **GPU T4 x2** or **GPU P100**
-3. Click **Run** menu (top left) → **Kaggle Jupyter Server**
+1. Open [kaggle.com/code](https://www.kaggle.com/code) and create/open a notebook
+2. Enable GPU: **Settings** > **Accelerator** > **GPU T4 x2** (or P100)
+3. Click **Run** menu (top left) > **Kaggle Jupyter Server**
 4. Copy the **VSCode Compatible URL** from the right panel
 
-```
-https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ...
-```
-
-### 2. Install & Run
+### Step 2: Install
 
 ```bash
-# Install
 pip install kagglerun
+```
 
-# Set URL (optional - avoids --url each time)
-export KAGGLE_JUPYTER_URL="https://your-kaggle-url-here"
+### Step 3: Set Environment Variable
 
-# Execute code
-kagglerun "print('Hello from Kaggle GPU!')"
+<details>
+<summary><b>Windows (CMD)</b></summary>
 
-# Run a Python file
-kagglerun train.py
+```cmd
+:: Temporary (current session only)
+set KAGGLE_JUPYTER_URL=https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ...
+
+:: Permanent (persists after restart)
+setx KAGGLE_JUPYTER_URL "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."
+```
+
+> **Note**: For `set`, do NOT use quotes around the URL. For `setx`, quotes are required.
+
+</details>
+
+<details>
+<summary><b>Windows (PowerShell)</b></summary>
+
+```powershell
+# Temporary (current session only)
+$env:KAGGLE_JUPYTER_URL = "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."
+
+# Permanent (user level)
+[Environment]::SetEnvironmentVariable("KAGGLE_JUPYTER_URL", "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ...", "User")
+```
+
+</details>
+
+<details>
+<summary><b>Linux / macOS (Bash/Zsh)</b></summary>
+
+```bash
+# Temporary (current session only)
+export KAGGLE_JUPYTER_URL="https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."
+
+# Permanent - add to ~/.bashrc or ~/.zshrc
+echo 'export KAGGLE_JUPYTER_URL="https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."' >> ~/.bashrc
+source ~/.bashrc
+```
+
+</details>
+
+<details>
+<summary><b>Or pass URL directly</b></summary>
+
+```bash
+# Skip environment variable entirely
+kagglerun --url "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..." "print('Hello GPU!')"
+```
+
+</details>
+
+### Step 4: Run!
+
+```bash
+# Test connection
+kagglerun --test
 
 # Check GPU
 kagglerun --gpu-info
+
+# Execute code
+kagglerun "import torch; print(f'CUDA: {torch.cuda.is_available()}')"
+
+# Run a Python file
+kagglerun train.py
 ```
 
 ---
@@ -71,32 +151,25 @@ kagglerun --gpu-info
 ### CLI Commands
 
 ```bash
-# Execute inline code
-kagglerun "import torch; print(torch.cuda.is_available())"
+# Execute inline Python code
+kagglerun "print('Hello from Kaggle GPU!')"
 
 # Execute a local Python file
-kagglerun my_training_script.py
+kagglerun my_script.py
 
-# Get GPU information
+# GPU and system information
 kagglerun --gpu-info
-
-# Get system information (Python, PyTorch, CUDA)
 kagglerun --system-info
 
-# List files in /kaggle/working/
-kagglerun --list-files
+# File operations
+kagglerun --list-files                    # List /kaggle/working/
+kagglerun --upload data.csv               # Upload file
+kagglerun --download model.pkl -o ./      # Download file
+kagglerun --read output.txt               # Read remote file
 
-# Upload a file
-kagglerun --upload data.csv
-
-# Download a file
-kagglerun --download results.csv --output ./local_results.csv
-
-# Read a remote file
-kagglerun --read output.txt
-
-# Test connection
-kagglerun --test
+# Connection
+kagglerun --test                          # Test connection
+kagglerun --timeout 300 long_script.py    # Custom timeout
 ```
 
 ### Python API
@@ -104,157 +177,154 @@ kagglerun --test
 ```python
 from kagglerun import KaggleExecutor
 
-# Connect (URL format auto-detected)
-executor = KaggleExecutor("https://your-kaggle-url")
+# Connect to Kaggle
+executor = KaggleExecutor("https://your-kaggle-url?token=...")
 
 # Execute code
 result = executor.execute("""
 import torch
-print(f"CUDA available: {torch.cuda.is_available()}")
-print(f"Device: {torch.cuda.get_device_name(0)}")
-""")
-print(result['output_text'])
-
-# Run ML training
-result = executor.execute("""
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.datasets import make_classification
-
-X, y = make_classification(n_samples=10000, n_features=20)
-clf = RandomForestClassifier(n_estimators=100, n_jobs=-1)
-clf.fit(X, y)
-print(f"Score: {clf.score(X, y):.4f}")
+print(f"GPU: {torch.cuda.get_device_name(0)}")
+print(f"Memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB")
 """)
 
-# Save file to Kaggle
+# File operations
 executor.save_text("config.json", '{"epochs": 10}')
+executor.upload_file("local_data.csv", "data.csv")
+data = executor.download_file("results.csv")
 
-# Download trained model
-model_bytes = executor.download_file("model.pkl")
-with open("local_model.pkl", "wb") as f:
-    f.write(model_bytes)
+# Get info
+executor.get_gpu_info()
+executor.get_system_info()
+executor.list_files()
 ```
 
-### MCP Server (For AI Agents)
+---
 
-KaggleRun includes a Model Context Protocol (MCP) server, allowing AI assistants like Claude Code to execute code on Kaggle GPUs as a native tool.
+## MCP Server
 
-**Setup in Claude Code:**
+KaggleRun includes a **Model Context Protocol (MCP)** server, enabling AI assistants like Claude Code to execute code on Kaggle GPUs as a native tool.
 
-1. Install with MCP support:
+### Setup
+
+1. **Install with MCP support:**
    ```bash
    pip install kagglerun[mcp]
    ```
 
-2. Add to your Claude Code MCP settings (`~/.claude/mcp_settings.json`):
-   ```json
-   {
-     "mcpServers": {
-       "kagglerun": {
-         "command": "python",
-         "args": ["-m", "kagglerun.mcp_server"],
-         "env": {
-           "KAGGLE_JUPYTER_URL": "https://your-kaggle-url"
-         }
-       }
-     }
-   }
-   ```
+2. **Configure Claude Code** (`~/.claude/mcp_settings.json`):
 
-3. Claude can now use these tools:
-   - `execute_python` - Run code on GPU
-   - `get_gpu_info` - Check GPU status
-   - `list_files` - Browse remote files
-   - `save_file` / `read_file` - File operations
-   - `download_file` - Get files locally
+<details>
+<summary><b>Windows</b></summary>
 
-**Example conversation with Claude:**
+```json
+{
+  "mcpServers": {
+    "kagglerun": {
+      "command": "python",
+      "args": ["-m", "kagglerun.mcp_server"],
+      "env": {
+        "KAGGLE_JUPYTER_URL": "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."
+      }
+    }
+  }
+}
+```
 
-> You: "Train a ResNet18 on CIFAR-10 using the Kaggle GPU"
+</details>
+
+<details>
+<summary><b>Linux / macOS</b></summary>
+
+```json
+{
+  "mcpServers": {
+    "kagglerun": {
+      "command": "python3",
+      "args": ["-m", "kagglerun.mcp_server"],
+      "env": {
+        "KAGGLE_JUPYTER_URL": "https://kkb-production.jupyter-proxy.kaggle.net?token=eyJ..."
+      }
+    }
+  }
+}
+```
+
+</details>
+
+### Available Tools
+
+| Tool | Description |
+|:-----|:------------|
+| `execute_python` | Run Python code on GPU |
+| `get_gpu_info` | Get GPU model, memory, driver |
+| `get_system_info` | Python version, PyTorch, CUDA |
+| `list_files` | Browse `/kaggle/working/` |
+| `read_file` | Read remote text files |
+| `save_file` | Save content to files |
+| `download_file` | Download files (base64) |
+| `test_connection` | Verify kernel connectivity |
+
+### Example Conversation
+
+> **You:** Train a simple neural network on the Kaggle GPU
 >
-> Claude: *Uses execute_python tool to run training on Kaggle GPU*
+> **Claude:** *Uses `execute_python` to run PyTorch training on Kaggle's free GPU*
 
 ---
 
 ## Use Cases
 
-### 1. ML Model Training
+### ML Model Training
+
 ```python
 result = executor.execute("""
 import torch
 import torch.nn as nn
 from torchvision import models
 
-model = models.resnet50(pretrained=True).cuda()
-x = torch.randn(32, 3, 224, 224).cuda()
+# Load pretrained ResNet50
+model = models.resnet50(weights='DEFAULT').cuda()
 
-with torch.cuda.amp.autocast():
-    output = model(x)
+# Inference test
+x = torch.randn(16, 3, 224, 224).cuda()
+with torch.amp.autocast('cuda'):
+    out = model(x)
 
-print(f"Output shape: {output.shape}")
+print(f"Output: {out.shape}")
 print(f"GPU Memory: {torch.cuda.memory_allocated()/1e9:.2f} GB")
 """)
 ```
 
-### 2. Large Language Model Inference
+### LLM Inference
+
 ```python
 result = executor.execute("""
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
+from transformers import pipeline
 
-model_name = "microsoft/phi-2"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16).cuda()
-
-prompt = "The benefits of open source AI are"
-inputs = tokenizer(prompt, return_tensors="pt").to("cuda")
-outputs = model.generate(**inputs, max_new_tokens=50)
-print(tokenizer.decode(outputs[0]))
+generator = pipeline('text-generation', model='gpt2', device=0)
+output = generator("The future of AI is", max_length=50)
+print(output[0]['generated_text'])
 """, timeout=300)
 ```
 
-### 3. Data Processing at Scale
+### Data Processing
+
 ```python
 result = executor.execute("""
 import pandas as pd
 import numpy as np
 
 # Generate large dataset
-df = pd.DataFrame(np.random.randn(1_000_000, 100))
-df.columns = [f'feature_{i}' for i in range(100)]
+df = pd.DataFrame(np.random.randn(1_000_000, 50))
+print(f"Shape: {df.shape}")
+print(f"Memory: {df.memory_usage(deep=True).sum() / 1e6:.1f} MB")
 
-# Process
-result = df.describe()
-print(result)
-
-# Save
-df.to_parquet('/kaggle/working/processed.parquet')
-print("Saved to /kaggle/working/processed.parquet")
+# Save for download
+df.to_parquet('/kaggle/working/data.parquet')
 """)
 
 # Download result
-data = executor.download_file("processed.parquet")
-```
-
-### 4. Kaggle Competition Submissions
-```python
-# Upload your solution
-executor.upload_file("submission.csv")
-
-# Or generate on Kaggle
-result = executor.execute("""
-import pandas as pd
-
-# Your prediction code here
-predictions = [0.1, 0.9, 0.3, ...]
-
-submission = pd.DataFrame({
-    'id': range(len(predictions)),
-    'target': predictions
-})
-submission.to_csv('/kaggle/working/submission.csv', index=False)
-print("Submission ready!")
-""")
+data = executor.download_file("data.parquet")
 ```
 
 ---
@@ -264,36 +334,34 @@ print("Submission ready!")
 ### `KaggleExecutor`
 
 ```python
-executor = KaggleExecutor(
-    base_url: str,           # Kaggle Jupyter URL (auto-detects format)
-    verbose: bool = True,    # Print status messages
-    timeout: int = 120,      # Default execution timeout (seconds)
-    on_output: Callable = None  # Callback for streaming output
+KaggleExecutor(
+    base_url: str,              # Kaggle Jupyter URL
+    verbose: bool = True,       # Print status messages
+    timeout: int = 120,         # Default timeout (seconds)
+    on_output: Callable = None  # Streaming output callback
 )
 ```
 
-**Methods:**
-
 | Method | Description |
-|--------|-------------|
-| `execute(code, timeout, wait_idle)` | Execute Python code |
-| `run_file(filepath, timeout)` | Execute local .py file |
-| `upload_file(local_path, remote_name)` | Upload file to /kaggle/working/ |
-| `save_text(filename, content)` | Save text to remote file |
-| `read_file(remote_path)` | Read remote text file |
-| `download_file(remote_path)` | Download file as bytes |
-| `list_files(path)` | List directory contents |
-| `get_gpu_info()` | Get GPU information |
-| `get_system_info()` | Get Python/PyTorch info |
-| `test_connection()` | Test API connectivity |
-| `interrupt_kernel()` | Stop current execution |
+|:-------|:------------|
+| `execute(code, timeout)` | Execute Python code |
+| `run_file(path, timeout)` | Run local .py file |
+| `upload_file(local, remote)` | Upload to /kaggle/working/ |
+| `download_file(path)` | Download as bytes |
+| `save_text(name, content)` | Save text file |
+| `read_file(path)` | Read text file |
+| `list_files(path)` | List directory |
+| `get_gpu_info()` | GPU information |
+| `get_system_info()` | System information |
+| `test_connection()` | Test connectivity |
+| `interrupt_kernel()` | Stop execution |
 
 ### Convenience Function
 
 ```python
 from kagglerun import connect
 
-executor = connect("https://your-kaggle-url")  # Raises ConnectionError if fails
+executor = connect("https://your-url")  # Raises ConnectionError if fails
 ```
 
 ---
@@ -301,55 +369,71 @@ executor = connect("https://your-kaggle-url")  # Raises ConnectionError if fails
 ## How It Works
 
 ```
-┌──────────────────┐     REST API      ┌───────────────────┐
-│   Your Terminal  │ ◄──────────────► │  Kaggle Jupyter   │
-│   or AI Agent    │                   │     Server        │
-│                  │     WebSocket     │                   │
-│  kagglerun       │ ◄══════════════► │  Python Kernel    │
-│                  │   (real-time)     │  (GPU: T4/P100)   │
-└──────────────────┘                   └───────────────────┘
+┌─────────────────────┐          ┌─────────────────────┐
+│   Your Terminal     │          │   Kaggle Jupyter    │
+│   ─────────────     │  REST    │   ──────────────    │
+│                     │◄────────►│   Kernel Manager    │
+│   kagglerun CLI     │          │                     │
+│   Python API        │  WS      │   Python Kernel     │
+│   MCP Server        │◄════════►│   GPU: T4/P100/H100 │
+│                     │          │                     │
+└─────────────────────┘          └─────────────────────┘
+      Local Machine                   Kaggle Cloud
 ```
 
-1. **REST API** - Kernel management (create, list, interrupt)
-2. **WebSocket** - Real-time code execution and output streaming
-3. **Base64** - Binary file transfer (models, datasets)
+- **REST API** - Kernel lifecycle management
+- **WebSocket** - Real-time code execution & streaming output
+- **Base64** - Binary file transfers
 
 ---
 
 ## Limitations
 
-- **Session duration**: Kaggle notebooks timeout after ~12 hours of inactivity
-- **JWT expiration**: URL tokens expire periodically; get a fresh URL if disconnected
-- **GPU quota**: Kaggle limits GPU hours (~30h/week for free accounts)
-- **File persistence**: Files in `/kaggle/working/` persist only during session
+| Limitation | Details |
+|:-----------|:--------|
+| Session timeout | ~12 hours of inactivity |
+| Token expiration | Get fresh URL when disconnected |
+| GPU quota | ~30 hours/week (free accounts) |
+| File persistence | Only during active session |
 
 ---
 
 ## Troubleshooting
 
-### "Connection failed"
-- Ensure your Kaggle notebook is running (green "Running" status)
-- Get a fresh URL if token expired (tokens expire periodically)
-- Verify the notebook has GPU enabled and is not idle
+<details>
+<summary><b>"Connection failed"</b></summary>
 
-### "Kernel is busy"
+- Ensure notebook shows "Running" status in Kaggle
+- Get a fresh URL (tokens expire)
+- Check GPU is enabled in notebook settings
+
+</details>
+
+<details>
+<summary><b>"Kernel is busy"</b></summary>
+
 - KaggleRun auto-interrupts busy kernels
-- Use `--timeout` for long-running code
+- Use `--timeout` for long operations
 - Check if notebook is running other code
 
-### "No GPU available"
-- Enable GPU in Kaggle: Settings → Accelerator → GPU
-- Check GPU quota at kaggle.com/me/quota
+</details>
+
+<details>
+<summary><b>"No GPU available"</b></summary>
+
+- Enable GPU: Settings > Accelerator > GPU
+- Check quota at [kaggle.com/me/quota](https://kaggle.com/me/quota)
+
+</details>
 
 ---
 
 ## Contributing
 
-Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ```bash
-# Development setup
-git clone https://github.com/kagglerun/kagglerun
+git clone https://github.com/Letemoin/kagglerun
 cd kagglerun
 pip install -e ".[dev]"
 pytest tests/ -v
@@ -359,16 +443,19 @@ pytest tests/ -v
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+MIT License - see [LICENSE](LICENSE)
 
 ---
 
 ## Acknowledgments
 
-- [Kaggle](https://kaggle.com) for free GPU access
-- [Jupyter](https://jupyter.org) for the notebook protocol
-- [Anthropic](https://anthropic.com) for MCP specification
+- [Kaggle](https://kaggle.com) - Free GPU infrastructure
+- [Jupyter](https://jupyter.org) - Notebook protocol
+- [Anthropic](https://anthropic.com) - MCP specification
 
 ---
 
-**Star this repo if it helps your ML workflow!**
+<p align="center">
+  <b>If KaggleRun helps your workflow, give it a star!</b><br><br>
+  <a href="https://github.com/Letemoin/kagglerun"><img src="https://img.shields.io/github/stars/Letemoin/kagglerun?style=for-the-badge&logo=github&color=yellow" alt="Star on GitHub"></a>
+</p>
