@@ -44,6 +44,10 @@ kagglerun --url "$KAGGLE_URL" "import torch; print(torch.cuda.get_device_name(0)
 # Output: Tesla T4
 ```
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Letemoin/kagglerun/master/assets/demo.svg" alt="KaggleRun Demo" width="600">
+</p>
+
 ---
 
 ## Why KaggleRun?
